@@ -1,9 +1,7 @@
-package com.caiovictor.android.apps.infoglobo.view;
+package com.caiovictor.android.apps.infoglobo;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import com.caiovictor.android.apps.infoglobo.R;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -1,4 +1,4 @@
-package com.caiovictor.android.apps.infoglobo.view;
+package com.caiovictor.android.apps.infoglobo;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,15 +7,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import android.transition.Explode;
-
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.transition.Fade;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,11 +22,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.caiovictor.android.apps.infoglobo.R;
 import com.caiovictor.android.apps.infoglobo.models.Capa;
 import com.caiovictor.android.apps.infoglobo.models.Conteudo.Conteudo;
+import com.caiovictor.android.apps.infoglobo.models.ConteudoViewUser;
 import com.caiovictor.android.apps.infoglobo.util.Commons;
+import com.caiovictor.android.apps.infoglobo.util.ViewModelFactory;
 import com.caiovictor.android.apps.infoglobo.viewmodels.CapaViewModel;
+import com.caiovictor.android.apps.infoglobo.viewmodels.ConteudoViewViewModel;
 
 import java.text.DateFormat;
 import java.util.Arrays;
@@ -35,9 +36,13 @@ import java.util.Date;
 
 public class ConteudoViewActivity extends AppCompatActivity {
 
+    private static final String TAG = "ConteudoViewActivity";
+
     // PREPARAR PARA MULTIPLOS PRODUTOS - O PRODUTO DEVERIA POSSUIR ID PARA CONTROLE INTERNO
     public final static String BUNDLE_DATA_PRODUTO = "BUNDLE_DATA_PRODUTO";
     public final static String BUNDLE_DATA_CONTEUDO_ID = "BUNDLE_DATA_CONTEUDO_ID";
+
+    ConteudoViewViewModel mConteudoViewViewModel;
 
     private String mExtraProduto ="";
     private int mExtraConteudoId = -1;
@@ -84,63 +89,80 @@ public class ConteudoViewActivity extends AppCompatActivity {
             finishMe();
         }
 
-        // TODO CAPTURAR O CONTEÚDO DA ROOM DATABASE, MAS COMONÃO ESTÁ IMPLEMENTADO AINDA....
-        subscribeObservers();
+        // TODO CAPTURAR O CONTEÚDO DA ROOM DATABASE TEMP, MAS COMO NÃO HÁ NECESSIDADE DE SE
+        //  IMPLEMENTAR AINDA...
+        initObservers();
 
     }
 
-    private void subscribeObservers(){
-        CapaViewModel mMainViewModel = new ViewModelProvider(this).get(CapaViewModel.class);
+    private void initObservers(){
+
+        mConteudoViewViewModel = new ViewModelProvider(this, new ViewModelFactory(getApplication())).get(ConteudoViewViewModel.class);
 
         // PROVAVELMENTE MATERIAS NÃO RECEBEM ATUALIZAÇÃOES MODIFICAÇÕES DE CONTEÚDO OU DADOS
         // TALVEZ SEJA INTERESSANTE MANTER LIVEDATA PARA RECEBER ATUALIZAÇÕES/MODIFICAÇÕES
         // A TODOS TEMPO E ATUALIZAR A UI CONFORME
         // TODO CRIAR OBESERVER PARA O CONTEÚDO ESPECÍFICO
-        LiveData liveDataGetCapas = mMainViewModel.getCapas();
-        liveDataGetCapas.observe(this, new Observer<Capa[]>() {
-            @Override
-            public void onChanged(@Nullable Capa[] capas) {
+        LiveData liveDataGetCapas = mConteudoViewViewModel.getCapas();
+        liveDataGetCapas.observe(this, (Observer<Capa[]>) capas -> {
 
-                if(capas != null) {
+            if(capas != null) {
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        Arrays.stream(capas)
-                                .filter(c -> c.getProduto().toUpperCase().equals(mExtraProduto))
-                                .findFirst().ifPresent(capa -> mConteudo = capa.getConteudos().stream()
-                                .filter(p -> p.getId() == mExtraConteudoId)
-                                .findFirst().orElse(null));
-                    } else {
-                        for (Capa capa : capas) {
-                            if (capa.getProduto().toUpperCase().equals(mExtraProduto)) {
-                                for (Conteudo conteudo : capa.getConteudos()) {
-                                    if (conteudo.getId() == mExtraConteudoId) {
-                                        mConteudo = conteudo;
-                                        break;
-                                    }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    Arrays.stream(capas)
+                            .filter(c -> c.getProduto().toUpperCase().equals(mExtraProduto))
+                            .findFirst().ifPresent(capa -> mConteudo = capa.getConteudos().stream()
+                            .filter(p -> p.getId() == mExtraConteudoId)
+                            .findFirst().orElse(null));
+                } else {
+                    for (Capa capa : capas) {
+                        if (capa.getProduto().toUpperCase().equals(mExtraProduto)) {
+                            for (Conteudo conteudo : capa.getConteudos()) {
+                                if (conteudo.getId() == mExtraConteudoId) {
+                                    mConteudo = conteudo;
+                                    break;
                                 }
                             }
-                            if (mConteudo != null) {
-                                break;
-                            }
+                        }
+                        if (mConteudo != null) {
+                            break;
                         }
                     }
-
-                    if(mConteudo == null){
-                        Toast.makeText(ConteudoViewActivity.this, R.string.content_notfound, Toast.LENGTH_LONG).show();
-                        finishMe();
-                    }
-
-                    fillData();
-
                 }
 
-                // NÃO É REALTIME DATA - SEM NECESSIDADE DE MANTER O OBERSER VIVO
-                liveDataGetCapas.removeObserver(this);
+                if(mConteudo == null){
+                    Toast.makeText(ConteudoViewActivity.this, R.string.content_notfound, Toast.LENGTH_LONG).show();
+                    finishMe();
+                }
+
+                mConteudoViewViewModel.insert(new ConteudoViewUser(mConteudo.getId(), new Date()));
+                observeConteudoViewCount(mConteudoViewViewModel.getCountViewsByConteudoId(mConteudo.getId()));
+
+                fillData();
+
+            }
+
+            // NÃO É REALTIME DATA - SEM NECESSIDADE DE MANTER O OBERSER VIVO
+            //liveDataGetCapas.removeObserver(this);
+        });
+
+    }
+
+    private void observeConteudoViewCount(LiveData<Long> aLong){
+        // TODO SUPUNDO QUE SEJA UMA CONSULTA A BASE EXTERNA, OU MELHOR, MICRO SERVIÇO, OS DADOS
+        //  SERÃO VIVOS, E COM UM ATUALIZAÇÃO COMO ESTA QUE CONSUMIRÁ QUASE NADA RECURSOS DO
+        //  DISPOSITIVO É INTERESSANTE DEXAR O OBESERVER VIVO - O USUÁRIO IRÁ ACOMPNAHAR A
+        //  "REPERCUSSÃO" DA MATÉRIA AO VIVO
+        aLong.observe(this, aLong1 -> {
+            if(aLong1 != null) {
+                ((TextView) findViewById(R.id.count_views)).setText(String.valueOf(aLong1));
             }
         });
     }
 
     private void fillData(){
+
+        // INSERT SIMPLES SEM FIRULA
 
         if(mConteudo.getImagens() != null && mConteudo.getImagens().length > 0) {
 

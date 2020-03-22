@@ -1,4 +1,4 @@
-package com.caiovictor.android.apps.infoglobo.view;
+package com.caiovictor.android.apps.infoglobo;
 
 import android.os.Bundle;
 

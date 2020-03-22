@@ -1,6 +1,5 @@
-package com.caiovictor.android.apps.infoglobo.view;
+package com.caiovictor.android.apps.infoglobo.fragment;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,12 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +23,7 @@ import com.caiovictor.android.apps.infoglobo.adapters.OnCapaConteudoListener;
 import com.caiovictor.android.apps.infoglobo.models.Capa;
 import com.caiovictor.android.apps.infoglobo.models.Conteudo.Conteudo;
 import com.caiovictor.android.apps.infoglobo.util.Commons;
+import com.caiovictor.android.apps.infoglobo.ConteudoViewActivity;
 import com.caiovictor.android.apps.infoglobo.viewmodels.CapaViewModel;
 
 public class CapaFragment extends Fragment implements OnCapaConteudoListener {

@@ -1,10 +1,8 @@
-package com.caiovictor.android.apps.infoglobo.view;
+package com.caiovictor.android.apps.infoglobo;
 
 import android.os.Build;
 import android.os.Bundle;
 
-import com.caiovictor.android.apps.infoglobo.R;
-import com.caiovictor.android.apps.infoglobo.models.Capa;
 import com.caiovictor.android.apps.infoglobo.util.Commons;
 import com.caiovictor.android.apps.infoglobo.viewmodels.CapaViewModel;
 
@@ -13,8 +11,6 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;

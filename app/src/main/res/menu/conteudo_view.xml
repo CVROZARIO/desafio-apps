@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.ConteudoViewActivity">
+    tools:context=".ConteudoViewActivity">
     <item
         android:id="@+id/action_share"
         android:orderInCategory="100"
         android:title="@string/action_share"
         android:icon="@drawable/ic_share_black_24dp"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_webpage"
         android:orderInCategory="200"

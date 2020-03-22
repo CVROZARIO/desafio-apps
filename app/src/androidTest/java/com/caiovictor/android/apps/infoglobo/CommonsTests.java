@@ -1,12 +1,8 @@
 package com.caiovictor.android.apps.infoglobo;
 
-import android.content.Context;
-
 import com.caiovictor.android.apps.infoglobo.util.Commons;
-import com.caiovictor.android.apps.infoglobo.view.MainActivity;
 
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import org.junit.Test;
