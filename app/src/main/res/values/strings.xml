@@ -1,0 +1,62 @@
+<!DOCTYPE resources [<!ENTITY app_name "InfoGlobo">]>
+<resources>
+    <string name="app_name">&app_name;</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">InfoGloboo</string>
+    <string name="nav_header_subtitle">Uma empresa do Grupo Globo</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_share">Compartilhar</string>
+    <string name="action_webpage">Ver na Web</string>
+
+    <string name="web_site">https://www.infoglobo.com.br/</string>
+
+    <string name="menu_home">OGlobo</string><!-- QUANDO HOUVER MULTIPLICIDADE DE CAPAS A EXIBIR, OS ITEM DO NAV DEVEM SER DINAMICOS -->
+    <string name="menu_share">Compartilhar APP</string>
+    <string name="menu_goto_site">Visitar Site</string>
+    <string name="menu_about">Sobre</string>
+
+    <string name="nav_menu_secundary_group">O &app_name;</string>
+
+    <string name="share_app_subject">Compartilhar APP &app_name;</string>
+    <string name="share_app_text">Baixe o aplicatico &app_name; em https://www.linkedin.com/in/cvrozario</string>
+
+    <string name="loading_content_message">carregando as últimas notícias para você!\naguarde um momento…</string>
+    <string name="no_data_message">Ops, parece que não conseguimos encontrar os dados!\nAguarde um momento…</string>
+
+    <string name="human_elapsed_time_unknow"> </string>
+    <string name="human_elapsed_time_now">agora</string>
+    <string name="human_elapsed_time_base">há %d%s</string>
+    <string name="human_elapsed_time_year">\u0020ano</string>
+    <string name="human_elapsed_time_years">\u0020anos</string>
+    <string name="human_elapsed_time_day">\u0020dia</string>
+    <string name="human_elapsed_time_days">\u0020dias</string>
+    <string name="human_elapsed_time_hour">h</string>
+    <string name="human_elapsed_time_min">m</string>
+
+    <string name="share_title">Compartilhar:</string>
+
+    <string name="error_opening_conteudo">Ocorreu um erro ao abrir o conteúdo selecionado. Favor tentar novamente.</string>
+
+    <string name="title_activity_conteudo_view">&app_name; - Matéria</string>
+    <string name="conteudo_view_transition_thumb">conteudo_view_transition_thumb</string>
+    <string name="content_notfound">Ops, o conteúdo não foi encontrado. Tente reiniciar o aplicativo.</string>
+    <string name="conteudo_view_thumb_subtitle_format">%s \u2022 Foto: %s</string>
+    <string name="conteudo_view_autor_none"> </string>
+    <string name="conteudo_view_autor_title">Por: </string>
+    <string name="conteudo_view_autor_separator">, </string>
+
+    <string name="title_activity_about">Sobre o &app_name;</string>
+    <string name="about_str">A Infoglobo através de seus produtos - os jornais O Globo, Extra e Expresso, com os sites Globo e Extra e a Agência O Globo - tem o dever de apurar o fato, oferecendo aos seus leitores a informação mais completa, sempre com a preocupação de adequar a linguagem ao público a que se destina. Além de esclarecer o que acontece de mais importante no Brasil e no mundo, os produtos da Infoglobo também são uma ferramenta de acesso ao melhor do entretenimento e da cultura. A Infoglobo tem muito orgulho desse papel e trabalha com o compromisso de levar jornalismo sério e isento à população.\n\n
+    Tudo começou com o Jornal O Globo, que faz parte da vida dos moradores do Rio de Janeiro desde 1925. Líder absoluto nas classes A e B, é um jornal que leva para os leitores muito mais do que informação. O Globo apóia projetos culturais e educacionais, além de ter um time de colunistas que reforçam a pluralidade e contribuem para que o leitor forme sua própria opinião, pois tem acesso ao que há de melhor em conteúdo. O Jornal O Globo é um dos jornais de maior prestígio do país, se posicionando entre os três jornais de maior circulação.\n\n
+    Em 2009, O Globo se reafirmou como um veículo multiplataforma dando seqüência ao movimento lançado em setembro de 2008 com a assinatura "O Globo. Muito além do papel de um jornal", que posiciona a marca como sinônimo de informação confiável, independentemente do meio onde é veiculada.\n\n
+    O Globo foi o primeiro no país e em toda a América Latina a disponibilizar seu conteúdo impresso no Kindle, o leitor para livros digitais (e-books) produzido pela Amazon. O acesso ao Globo via Kindle confirma o posicionamento da marca, de se manter em múltiplas plataformas, e a oferta de mobilidade, interatividade e informação aos leitores. Desta forma, a novidade reforçou a postura inovadora do jornal, que vem se mantendo pioneiro no lançamento de publicações em dispositivos digitais.\n\n
+    Com a mesma credibilidade e público alvo qualificado do jornal O Globo, merece destaque também o desempenho do site do Globo . Além de apresentar a versão digital do jornal O Globo, o site oferece aos seus leitores informação em tempo real dos fatos mais importantes do dia, no Brasil e no mundo. Em 2006 ele completou 10 anos e renovou o seu site mudando o seu layout, investindo em mais multimídia, jornalismo participativo e com a criação de uma editoria dedicada exclusivamente à publicação de material enviado pelos eleitores. O site tem mais de 2,5 milhões de usuários cadastrados e recebe, em média, 350 mil visitantes únicos por dia.\n\n
+    O jornal EXTRA iniciou sua história há 11 anos com uma ação promocional que mobilizou a população do Rio de Janeiro na escolha do nome do jornal. Essa primeira iniciativa já revelava a importância da participação popular no perfil da publicação. Até hoje, as opiniões e sugestões dos leitores são muito bem-vindas e o jornal é reconhecido pela proximidade e lealdade que mantém com seu público leitor.\n\n
+    Reforçando o objetivo de estar próximo de seus leitores e ser um prestador de serviços “essenciais”, o Extra é um produto de preço acessível, linguagem simples, sem desprezar o jornalismo de profundidade. Oferece um noticiário focado em fatos da região do leitor e cadernos temáticos que tratam de assuntos do dia-a-dia. O Extra é um sucesso desde o seu lançamento, por ser um jornal totalmente adequado às necessidades do leitor, não é a toa que ele se tornou líder de venda em banca do país, possuindo mais de 3 milhões de leitores. Além disso, o site do EXTRA está entre os três sites de jornal mais acessados do Brasil, com o número de 5.700.000 visitantes únicos e 21.400.000 páginas visitadas (GoogleAnalytics Set/09 e Marplan jul/08 a jun/09). É um jornal que faz parte da vida do leitor e o ajuda a compreender a realidade que o cerca: um produto que gera proximidade e envolvimento, onde o leitor participa, interage, contribui e opina.\n\n
+    Com uma linguagem simples, fácil e rápida, o jornal Expresso chegou às bancas no dia 27 de março de 2006 para oferecer ao leitor das classes C e D a oportunidade de estar bem informado, pagando um preço bastante acessível. Em formato tablóide, o jornal Expresso mostra diariamente em suas páginas, sempre de forma direta e organizada os assuntos mais relevantes do dia-a-dia do leitor.\n\n
+    Enquanto isso, a Agência O Globo capta, produz, formata e distribui informações para jornais brasileiros e serviços internacionais de notícias. Em sintonia com o serviço de Tempo Real e com o site do Globo, a Agência O Globo distribui, aproximadamente, 500 diferentes textos e uma centena de fotos por dia. Seu Banco de Imagens reúne mais de 80 anos de história do Globo.\n\n
+    Sempre preservando a qualidade gráfica e editorial de seus jornais, a Infoglobo inaugurou, em dezembro de 1998, o maior Parque Gráfico da América Latina. O esforço e o investimento aplicados no novo Parque Gráfico tiveram como objetivo beneficiar os clientes e parceiros da Infoglobo. O projeto entrou para a História e se tornou, com os demais produtos Infoglobo, uma referência em tecnologia e qualidade.</string>
+
+
+</resources>

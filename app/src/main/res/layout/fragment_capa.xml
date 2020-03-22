@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/list_background"/>
+
+    <RelativeLayout
+        android:id="@+id/frame_overlay_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/toolbar_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/foc_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="center">
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:layout_width="@dimen/foc_image_wh"
+                android:layout_height="@dimen/foc_image_wh"
+                style="?android:attr/progressBarStyleLarge"
+                android:indeterminate="true"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/loading_content_message"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/foc_no_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="center">
+
+            <ImageView
+                android:layout_width="@dimen/foc_image_wh"
+                android:layout_height="@dimen/foc_image_wh"
+                android:tint="@color/colorAccent"
+                android:src="@drawable/ic_warning_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:text="@string/no_data_message"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

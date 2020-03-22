@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/thumb_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/thumb"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintDimensionRatio="H,16:9"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:background="@color/conteudo_thumb_placeholder_bg"
+                    android:transitionName="@string/conteudo_view_transition_thumb"/>
+
+                <TextView
+                    android:id="@+id/thumb_subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:paddingVertical="10dp"
+                    android:paddingHorizontal="@dimen/materia_content_hpadding"
+                    android:textColor="@android:color/white"
+                    android:background="@color/overlay_image_background"
+                    />
+
+                <!--<com.smarteist.autoimageslider.SliderView
+                    android:visibility="gone"
+                    android:id="@+id/image_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="#5A5A5A"
+                    app:sliderIndicatorUnselectedColor="#FFF" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/materia_content_hpadding"
+                android:paddingVertical="@dimen/materia_content_vpadding"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/secao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:textAllCaps="true"
+                    android:textSize="22sp"
+                    android:textColor="@color/oglobo_base_color"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?selectableItemBackgroundBorderless"
+                    />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="end">
+
+                    <TextView
+                        android:id="@+id/last_update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"/>
+
+                    <TextView
+                        android:id="@+id/last_update_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="12sp"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/materia_content_hpadding"
+                android:paddingVertical="@dimen/materia_content_vpadding"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/materia_content_title_size"
+                    android:fontFamily="sans-serif-black"
+                    android:textColor="@android:color/primary_text_light"
+                    android:lineSpacingExtra="2sp"
+                    android:textAllCaps="true"/>
+
+                <TextView
+                    android:id="@+id/subtitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/materia_content_subtitle_size"
+                    android:fontFamily="sans-serif-medium"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:paddingTop="10dp"
+                    android:lineSpacingExtra="2sp"
+                    android:textAllCaps="true"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="italic"
+                        android:text="@string/conteudo_view_autor_title"
+                        android:layout_marginRight="2dp"
+                        />
+                    <TextView
+                        android:id="@+id/autores"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-black"
+                        android:textStyle="italic"
+                        />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/separator_light_gray"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="25dp"/>
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/materia_content_text_size"
+                    android:textColor="@android:color/secondary_text_light"
+                    android:lineSpacingExtra="3sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

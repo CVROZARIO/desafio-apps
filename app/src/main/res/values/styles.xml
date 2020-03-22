@@ -1,0 +1,37 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="CapaToolBarTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="android:textColorPrimary">@android:color/secondary_text_light</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppThemeTransition" parent="@style/AppTheme">
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowSharedElementEnterTransition">
+            @transition/change_image_transform</item>
+        <item name="android:windowSharedElementExitTransition">
+            @transition/change_image_transform</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="SplashTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+</resources>

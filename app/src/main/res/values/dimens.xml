@@ -1,0 +1,35 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="nav_header_vertical_spacing">8dp</dimen>
+    <dimen name="nav_header_height">176dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="toolbar_logo_padding_vertical">15dp</dimen>
+
+    <dimen name="activity_splash_image_maxwidth">300dp</dimen>
+
+    <dimen name="layout_listitem_cardview_paddingb">10dp</dimen>
+
+    <dimen name="layout_listitem_capa_content_hpadding">16dp</dimen>
+    <dimen name="layout_listitem_capa_content_vpadding">16dp</dimen>
+    <dimen name="layout_listitem_capa_content_footer_wh">30dp</dimen>
+    <dimen name="layout_listitem_capa_content_footer_btn_pad">5dp</dimen>
+
+
+    <dimen name="layout_listitem_capa_materia_thumb_minheight">100dp</dimen>
+    <dimen name="layout_listitem_capa_materia_content_title_size">22sp</dimen>
+
+    <dimen name="layout_listitem_capa_linkexterno_content_thumb_height">120dp</dimen>
+    <dimen name="layout_listitem_capa_linkexterno_content_title_size">14sp</dimen>
+
+    <dimen name="materia_content_hpadding">16dp</dimen>
+    <dimen name="materia_content_vpadding">16dp</dimen>
+    <dimen name="materia_content_title_size">30sp</dimen>
+    <dimen name="materia_content_subtitle_size">20sp</dimen>
+    <dimen name="materia_content_text_size">18sp</dimen>
+
+    <dimen name="foc_image_wh">50dp</dimen>
+
+</resources>

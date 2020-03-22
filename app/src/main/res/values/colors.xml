@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#004861</color>
+    <color name="colorPrimaryDark">#004259</color>
+    <color name="colorAccent">#D8DF20</color><!--F41D1D BD160B-->
+
+    <color name="toolbar_background">#FFFFFF</color>
+
+    <color name="list_background">#FAFBFC</color>
+
+    <color name="conteudo_thumb_placeholder_bg">#F6F8FA</color>
+
+    <color name="oglobo_base_color">#1E4C9A</color>
+
+    <color name="separator_light_gray">#CCC</color>
+
+    <color name="overlay_image_background">#75000000</color>
+</resources>
