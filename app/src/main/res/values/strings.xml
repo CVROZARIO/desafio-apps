@@ -42,7 +42,7 @@
     <string name="conteudo_view_transition_thumb">conteudo_view_transition_thumb</string>
     <string name="content_notfound">Ops, o conteúdo não foi encontrado. Tente reiniciar o aplicativo.</string>
     <string name="conteudo_view_thumb_subtitle_format">%s \u2022 Foto: %s</string>
-    <string name="conteudo_view_autor_none"> </string>
+    <string name="conteudo_view_autor_none">---</string> <!-- TODO DEFINIR O QUE SERÁ FEITO NESTE CASO - ACREDITO QUE NÃO PODE HAVER CONTEÚDO SEM AUTOR (CORRETO?!) -->
     <string name="conteudo_view_autor_title">Por: </string>
     <string name="conteudo_view_autor_separator">, </string>
 

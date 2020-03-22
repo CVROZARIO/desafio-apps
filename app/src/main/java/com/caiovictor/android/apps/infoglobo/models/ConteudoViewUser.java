@@ -14,29 +14,29 @@ import androidx.room.TypeConverters;
 public class ConteudoViewUser implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    private long id;
 
     @ColumnInfo(name = "conteudo_id")
-    private int conteudoId;
+    private long conteudoId;
 
     @ColumnInfo(name = "view_at")
     @TypeConverters({Converters.class})
     private Date viewDate;
 
-    public ConteudoViewUser(int conteudoId, Date viewDate){
+    public ConteudoViewUser(long conteudoId, Date viewDate){
         this.conteudoId = conteudoId;
         this.viewDate = viewDate;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public int getConteudoId() {
+    public long getConteudoId() {
         return conteudoId;
     }
 

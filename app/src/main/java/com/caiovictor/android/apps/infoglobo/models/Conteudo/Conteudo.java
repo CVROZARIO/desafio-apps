@@ -17,7 +17,7 @@ public class Conteudo implements Parcelable {
         int TYPE_LINKEXTERNO = 2;
     }
 
-    private int id;
+    private long id;
 
     private String[] autores;
 
@@ -84,7 +84,7 @@ public class Conteudo implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
+        parcel.writeLong(id);
         parcel.writeArray(autores);
         parcel.writeByte((byte)(informePublicitario ? 1 : 0));
         parcel.writeString(subTitulo);
@@ -100,7 +100,7 @@ public class Conteudo implements Parcelable {
         parcel.writeArray(imagens);
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

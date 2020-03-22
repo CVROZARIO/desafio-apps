@@ -41,11 +41,13 @@ public class ConteudoViewActivity extends AppCompatActivity {
     // PREPARAR PARA MULTIPLOS PRODUTOS - O PRODUTO DEVERIA POSSUIR ID PARA CONTROLE INTERNO
     public final static String BUNDLE_DATA_PRODUTO = "BUNDLE_DATA_PRODUTO";
     public final static String BUNDLE_DATA_CONTEUDO_ID = "BUNDLE_DATA_CONTEUDO_ID";
+    private static final String STATE_DATA_PRODUTO = "STATE_DATA_PRODUTO";
+    private static final String STATE_DATA_CONTEUDO_ID = "STATE_DATA_CONTEUDO_ID";
 
     ConteudoViewViewModel mConteudoViewViewModel;
 
     private String mExtraProduto ="";
-    private int mExtraConteudoId = -1;
+    private long mExtraConteudoId = -1L;
     private Conteudo mConteudo;
 
     @Override
@@ -72,19 +74,26 @@ public class ConteudoViewActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        // TODO NÃO NECESSÁRIO PARA O MOMENTO
-        //if (savedInstanceState == null) {}
 
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            mExtraProduto = bundle.getString(BUNDLE_DATA_PRODUTO);
-            if(mExtraProduto != null){
-                mExtraProduto = mExtraProduto.toUpperCase();
+        if (savedInstanceState != null) {
+
+            mExtraProduto = savedInstanceState.getString(STATE_DATA_PRODUTO, "");
+            mExtraConteudoId = savedInstanceState.getLong(STATE_DATA_CONTEUDO_ID, -1);
+
+        } else {
+
+            Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                mExtraProduto = bundle.getString(BUNDLE_DATA_PRODUTO);
+                if(mExtraProduto != null){
+                    mExtraProduto = mExtraProduto.toUpperCase();
+                }
+                mExtraConteudoId = bundle.getLong(BUNDLE_DATA_CONTEUDO_ID);
             }
-            mExtraConteudoId = bundle.getInt(BUNDLE_DATA_CONTEUDO_ID);
+
         }
 
-        if(bundle == null || mExtraProduto.equals("") || mExtraConteudoId < 0){
+        if(mExtraProduto.equals("") || mExtraConteudoId < 0){
             Toast.makeText(this, R.string.content_notfound, Toast.LENGTH_LONG).show();
             finishMe();
         }
@@ -93,6 +102,13 @@ public class ConteudoViewActivity extends AppCompatActivity {
         //  IMPLEMENTAR AINDA...
         initObservers();
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString(STATE_DATA_PRODUTO, mExtraProduto);
+        outState.putLong(STATE_DATA_CONTEUDO_ID, mExtraConteudoId);
+        super.onSaveInstanceState(outState);
     }
 
     private void initObservers(){
@@ -257,12 +273,6 @@ public class ConteudoViewActivity extends AppCompatActivity {
         }else{
             finish();
         }
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putString("message", "This is my message to be reloaded");
-        super.onSaveInstanceState(outState);
     }
 
 }
