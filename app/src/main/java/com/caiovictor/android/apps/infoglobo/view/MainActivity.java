@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             if(aBoolean) {
 
                 // TODO QUANDO HOUVER API PARA REALTIME DATA, EXECUTAR CARREGAMENTO DE DADOS
-                //  EM REALTIME
+                //  EM REALTIME (DELIBERAR ESTRATÉGIA)
                 setFrameOverlayContent(R.id.foc_no_data);
 
             }
