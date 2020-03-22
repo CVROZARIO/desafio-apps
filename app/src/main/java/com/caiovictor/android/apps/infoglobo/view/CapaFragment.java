@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -60,20 +61,18 @@ public class CapaFragment extends Fragment implements OnCapaConteudoListener {
     }
 
     private void subscribeObservers(){
-        mCapaViewModel.getCapas().observe(getViewLifecycleOwner(), new Observer<Capa[]>() {
-            @Override
-            public void onChanged(@Nullable Capa[] capas) {
-                Log.d(TAG, "getCapas " + capas.length);
-                if(capas != null){
+        mCapaViewModel.getCapas().observe(getViewLifecycleOwner(), capas -> {
+            if(capas.length > 0){
 
-                    // PEGAR O PRIMEIRO REGISTRO DO ARRAY POIS O JSON EXEMPLO
-                    // NÃO TEM MAIS REGISTROS - FUTURO - CRIAR DINAMICA PARA ACEITAS MULTIPLOS
-                    // REGISTROS DE CAPA (PRODUTOS)
-                    mCapa = capas[0];
-                    mConteudoAdapter.setConteudos(mCapa.getConteudos());
-                    
-                }
+                // PEGAR O PRIMEIRO REGISTRO DO ARRAY POIS O JSON EXEMPLO
+                // NÃO TEM MAIS REGISTROS - FUTURO - CRIAR DINAMICA PARA ACEITAS MULTIPLOS
+                // REGISTROS DE CAPA (PRODUTOS)
+                mCapa = capas[0];
+                mConteudoAdapter.setConteudos(mCapa.getConteudos());
+
             }
+            // TODO NESTE CASO O ELSE ESTÁ SENDO TRATADO PELA ACTIVITY PRINCIPAL ATRAVEZ DO OBSERVE
+            // ELA IRÁ APLICAR AS DEVIDAS AÇÕES
         });
     }
 
@@ -83,10 +82,9 @@ public class CapaFragment extends Fragment implements OnCapaConteudoListener {
         if(mCapa != null && mCapa.getConteudos().size() > 0 && (conteudo = mCapa.getConteudos().get(position)) != null) {
 
             if(conteudo.getTypeMode() == Conteudo.TypeMode.TYPE_LINKEXTERNO){
-
                 Commons.doOpenUrl(getActivity(), conteudo.getUrl());
-
             }else {
+
                 try {
 
                     Intent intent = new Intent(getActivity(), ConteudoViewActivity.class);
@@ -94,13 +92,11 @@ public class CapaFragment extends Fragment implements OnCapaConteudoListener {
                     intent.putExtra(ConteudoViewActivity.BUNDLE_DATA_CONTEUDO_ID, conteudo.getId());
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        View thumbImage = view.findViewById(R.id.thumb);
-
-                        ActivityOptions options = ActivityOptions
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && conteudo.getImagens() != null && conteudo.getImagens().length > 0) {
+                        final View thumbImage = view.findViewById(R.id.thumb);
+                        ActivityOptionsCompat activityOptionsCompat = ActivityOptionsCompat
                                 .makeSceneTransitionAnimation(getActivity(), thumbImage, ViewCompat.getTransitionName(thumbImage));
-                        startActivity(intent, options.toBundle());
-
+                        startActivity(intent, activityOptionsCompat.toBundle());
                     } else {
                         startActivity(intent);
                     }
@@ -108,6 +104,7 @@ public class CapaFragment extends Fragment implements OnCapaConteudoListener {
                 } catch (Exception exception) {
                     Toast.makeText(getActivity(), R.string.error_opening_conteudo, Toast.LENGTH_LONG).show();
                 }
+
             }
 
         }

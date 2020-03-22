@@ -17,6 +17,11 @@ public class SplashActivity extends AppCompatActivity {
 
         // TODO CARREGAR ASSETS E PRESSETS
         // APLICAR CONFIGURAÇÕES DE ABERTURA, INSTANCIA CLASSES...
+        // ---------------------------------------------------------------------------------------
+        // P) MAS CAIO, PORQUE NÃO COLOCAR O CARREGAMENTO DAS MANTERIAS AQUI?
+        // R) ACREDITO QUE A  AUTORIDADE DE CAPTURAR AS MATERIAS E AFINS SEJA DE UM SERVICE EM
+        // BACKGROUND PARA TER A REALTIME DA INFORMAÇÕES, COMO NESTE O JSON DE CONSUMO É ESTÁTICO
+        // NÃO HÁ A NECESSIDADE DE SE COMPLICAR A VIDA (NESTE MOMENTO)
         startActivity(new Intent(SplashActivity.this, MainActivity.class));
         finish();
 

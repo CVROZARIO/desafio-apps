@@ -11,6 +11,7 @@ import android.transition.Explode;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.transition.Fade;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,9 +47,16 @@ public class ConteudoViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setExitTransition(new Explode());
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Fade fade = new Fade();
+            View decor = getWindow().getDecorView();
+            fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                fade.excludeTarget(android.R.id.statusBarBackground, true);
+                fade.excludeTarget(android.R.id.navigationBarBackground, true);
+                getWindow().setEnterTransition(fade);
+                getWindow().setExitTransition(fade);
+            }
         }
 
         setContentView(R.layout.activity_conteudo_view);
@@ -64,7 +72,10 @@ public class ConteudoViewActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
-            mExtraProduto = bundle.getString(BUNDLE_DATA_PRODUTO).toUpperCase();
+            mExtraProduto = bundle.getString(BUNDLE_DATA_PRODUTO);
+            if(mExtraProduto != null){
+                mExtraProduto = mExtraProduto.toUpperCase();
+            }
             mExtraConteudoId = bundle.getInt(BUNDLE_DATA_CONTEUDO_ID);
         }
 
@@ -93,12 +104,11 @@ public class ConteudoViewActivity extends AppCompatActivity {
                 if(capas != null) {
 
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        mConteudo = Arrays.stream(capas)
+                        Arrays.stream(capas)
                                 .filter(c -> c.getProduto().toUpperCase().equals(mExtraProduto))
-                                    .findFirst().get()
-                                        .getConteudos().stream()
-                                            .filter(p -> p.getId() == mExtraConteudoId)
-                                                .findFirst().get();
+                                .findFirst().ifPresent(capa -> mConteudo = capa.getConteudos().stream()
+                                .filter(p -> p.getId() == mExtraConteudoId)
+                                .findFirst().orElse(null));
                     } else {
                         for (Capa capa : capas) {
                             if (capa.getProduto().toUpperCase().equals(mExtraProduto)) {
@@ -166,12 +176,7 @@ public class ConteudoViewActivity extends AppCompatActivity {
 
         final TextView secao = findViewById(R.id.secao);
         secao.setText(mConteudo.getSecao().getNome());
-        secao.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Commons.doOpenUrl(ConteudoViewActivity.this, mConteudo.getSecao().getUrl());
-            }
-        });
+        secao.setOnClickListener(view -> Commons.doOpenUrl(ConteudoViewActivity.this, mConteudo.getSecao().getUrl()));
 
         Date date = Commons.getDateFromString(mConteudo.getAtualizadoEm());
         if(date != null) {

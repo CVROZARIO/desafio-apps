@@ -1,5 +1,6 @@
 package com.caiovictor.android.apps.infoglobo.view;
 
+import android.os.Build;
 import android.os.Bundle;
 
 import com.caiovictor.android.apps.infoglobo.R;
@@ -7,6 +8,7 @@ import com.caiovictor.android.apps.infoglobo.models.Capa;
 import com.caiovictor.android.apps.infoglobo.util.Commons;
 import com.caiovictor.android.apps.infoglobo.viewmodels.CapaViewModel;
 
+import android.transition.Fade;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -44,6 +46,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Fade fade = new Fade();
+            View decor = getWindow().getDecorView();
+            fade.excludeTarget(decor.findViewById(R.id.action_bar_container), true);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                fade.excludeTarget(android.R.id.statusBarBackground, true);
+                fade.excludeTarget(android.R.id.navigationBarBackground, true);
+                getWindow().setEnterTransition(fade);
+                getWindow().setExitTransition(fade);
+            }
+        }
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -117,27 +131,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void subscribeObservers(){
 
-        mCapaViewModel.getCapas().observe(this, new Observer<Capa[]>() {
-            @Override
-            public void onChanged(@Nullable Capa[] capas) {
-                Log.d(TAG, "getCapas " + capas.length);
-                if(capas != null && capas.length > 0){
-                    setFrameOverlayContent(-1);
-                }
+        mCapaViewModel.getCapas().observe(this, capas -> {
+            if(capas.length > 0){
+                setFrameOverlayContent(-1);
             }
         });
 
-        mCapaViewModel.isQueryExhausted().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean aBoolean) {
-                Log.d(TAG, "isQueryExhausted " + aBoolean);
-                if(aBoolean) {
+        mCapaViewModel.isQueryExhausted().observe(this, aBoolean -> {
+            if(aBoolean) {
 
-                    // TODO QUANDO HOUVER API PARA REALTIME DATA, EXECUTAR CARREGAMENTO DE DADOS
-                    //  EM REALTIME
-                    setFrameOverlayContent(R.id.foc_no_data);
+                // TODO QUANDO HOUVER API PARA REALTIME DATA, EXECUTAR CARREGAMENTO DE DADOS
+                //  EM REALTIME
+                setFrameOverlayContent(R.id.foc_no_data);
 
-                }
             }
         });
     }
@@ -158,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(findViewById(R.id.frame_overlay_content).getVisibility() != (hasAny ? View.VISIBLE : View.GONE)) {
-            findViewById(R.id.frame_overlay_content).startAnimation(AnimationUtils.loadAnimation(this, hasAny ? R.anim.fade_in : R.anim.fade_out));
+            findViewById(R.id.frame_overlay_content).startAnimation(AnimationUtils.loadAnimation(this, hasAny ? android.R.anim.fade_in : android.R.anim.fade_out));
             findViewById(R.id.frame_overlay_content).setVisibility(hasAny ? View.VISIBLE : View.GONE);
         }
 
